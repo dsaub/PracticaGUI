@@ -45,7 +45,22 @@ public class OrdenadorController implements Initializable {
 
     public OrdenadorController() {
 
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        marca.setCellValueFactory(new PropertyValueFactory<>("marca"));
+        modelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+        estado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        ram.setCellValueFactory(new PropertyValueFactory<>("ram"));
+        procesador.setCellValueFactory(new PropertyValueFactory<>("procesador"));
+        tamDisco.setCellValueFactory(new PropertyValueFactory<>("tamDisco"));
+        disco.setCellValueFactory(new PropertyValueFactory<>("disco"));
+        ordenadoresModels = FXCollections.observableArrayList();
         System.out.println("Opened controller");
+        App.getInstance().loadOrdenadores();
         for (Ordenador ordenador : App.ordenadores) {
             ordenadoresModels.add(new OrdenadoresModel(
                     ordenador.getId(),
@@ -59,19 +74,6 @@ public class OrdenadorController implements Initializable {
             ));
 
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        marca.setCellValueFactory(new PropertyValueFactory<>("marca"));
-        modelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
-        estado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-        ram.setCellValueFactory(new PropertyValueFactory<>("ram"));
-        procesador.setCellValueFactory(new PropertyValueFactory<>("procesador"));
-        tamDisco.setCellValueFactory(new PropertyValueFactory<>("disco"));
-        disco.setCellValueFactory(new PropertyValueFactory<>("disco"));
-
         tableView.setItems(ordenadoresModels);
     }
 

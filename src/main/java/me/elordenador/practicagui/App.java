@@ -26,7 +26,7 @@ public class App extends Application {
         Impresora.init();
         Dispositivo.init();
         dispositivos = new ArrayList<>();
-        ordenadores = new ArrayList<>();
+
         impresoras = new ArrayList<>();
 
         for (int i = 0; i < Dispositivo.length(); i++) {
@@ -40,15 +40,7 @@ public class App extends Application {
 
         }
 
-        for (int i = 0; i < Ordenador.length(); i++) {
-            Ordenador ordenador = new Ordenador(i);
-            try {
-                ordenador.load();
-                ordenadores.add(ordenador);
-            } catch (ElementNotFoundException e) {
-                System.out.println("[WARN] Device not found");
-            }
-        }
+        loadOrdenadores();
 
         for (int i = 0; i < Impresora.length(); i++) {
             Impresora impresora = new Impresora(i);
@@ -70,6 +62,21 @@ public class App extends Application {
         stage.setScene(scene);
 
         stage.show();
+    }
+
+    public void loadOrdenadores() {
+
+        ordenadores = new ArrayList<>();
+
+        for (int i = 0; i < Ordenador.length(); i++) {
+            Ordenador ordenador = new Ordenador(i);
+            try {
+                ordenador.load();
+                ordenadores.add(ordenador);
+            } catch (ElementNotFoundException e) {
+                System.out.println("[WARN] Device not found");
+            }
+        }
     }
 
     public Scene getScene() {
