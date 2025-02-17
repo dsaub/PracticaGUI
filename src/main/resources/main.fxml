@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="https://javafx.com/javafx/21" xmlns:fx="https://javafx.com/fxml/1" stylesheets="main.css" fx:controller="me.elordenador.practicagui.controllers.MainController">
+    <children>
+        <fx:include source="menu.fxml"></fx:include>
+        <HBox fx:id="main_btn">
+            <children>
+                <Button text="Dispositivos Genericos" onAction="#openDispositivos">
+                    <HBox.margin>
+                        <Insets top="5" right="20" bottom="5" left="10"/>
+                    </HBox.margin>
+                </Button>
+                <Button text="Ordenadores" onAction="#openOrdenadores">
+                    <HBox.margin>
+                        <Insets top="5" right="20" bottom="5" left="10"/>
+                    </HBox.margin>
+                </Button>
+                <Button text="Impresoras" onAction="#openImpresoras">
+                    <HBox.margin>
+                        <Insets top="5" right="20" bottom="5" left="10"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+    </children>
+</VBox>

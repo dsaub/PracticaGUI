@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="me.elordenador.practicagui.controllers.AddOrdenadorController">
+    <children>
+        <fx:include source="menu.fxml" />
+        <HBox>
+            <children>
+                <Label text="Marca:" />
+                <TextArea fx:id="marca" maxHeight="20" />
+            </children>
+        </HBox>
+        <HBox>
+            <children>
+                <Label text="Modelo" />
+                <TextArea fx:id="modelo" maxHeight="20" />
+            </children>
+        </HBox>
+        <HBox>
+            <children>
+                <Label text="Estado:" />
+                <CheckBox fx:id="estado" />
+            </children>
+        </HBox>
+        <HBox>
+            <children>
+                <Label text="Ram:" />
+                <TextArea fx:id="ram" maxHeight="20" />
+            </children>
+        </HBox>
+        <HBox>
+            <children>
+                <Label text="Procesador:" />
+                <TextArea fx:id="procesador" maxHeight="20" />
+            </children>
+        </HBox>
+        <HBox>
+            <children>
+                <Label text="Tamaño del disco: " />
+                <TextArea fx:id="tamDisco" maxHeight="20" />
+            </children>
+        </HBox>
+        <HBox>
+            <children>
+                <Label text="Tipo del disco: " />
+                <TextArea fx:id="disco" maxHeight="20" />
+            </children>
+        </HBox>
+        <Button text="Guardar" onAction="#save" />
+    </children>
+</VBox>

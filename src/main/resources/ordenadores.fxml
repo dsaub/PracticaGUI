@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="me.elordenador.practicagui.controllers.OrdenadorController">
+    <children>
+        <fx:include source="menu.fxml" />
+        <HBox>
+            <children>
+                <TableView fx:id="tableView">
+                    <columns>
+                        <TableColumn text="ID" fx:id="id" />
+                        <TableColumn text="Marca" fx:id="marca" />
+                        <TableColumn text="Modelo" fx:id="modelo" />
+                        <TableColumn text="Estado" fx:id="estado" />
+                        <TableColumn text="RAM" fx:id="ram" />
+                        <TableColumn text="Procesador" fx:id="procesador" />
+                        <TableColumn text="Tamaño de Disco" fx:id="tamDisco" />
+                        <TableColumn text="Tipo de Disco" fx:id="disco" />
+                    </columns>
+                </TableView>
+                <VBox>
+                    <children>
+                        <Button text="Añadir ordenador" onAction="#addDevice" />
+                        <Button text="Editar ordenador" />
+                        <Button text="Borrar ordenador" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>
