@@ -1,38 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="me.elordenador.practicagui.controllers.OrdenadorController">
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="15" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.elordenador.practicagui.controllers.OrdenadorController">
     <children>
-        <fx:include source="menu.fxml" />
-        <HBox>
+        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="header-label" text="Lista de Ordenadores">
+         <padding>
+            <Insets bottom="10.0" top="30.0" />
+         </padding></Label>
+        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10" VBox.vgrow="ALWAYS">
             <children>
-                <TableView fx:id="tableView">
+                <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"  prefHeight="400.0" prefWidth="806.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn text="ID" fx:id="id" />
-                        <TableColumn text="Marca" fx:id="marca" />
-                        <TableColumn text="Modelo" fx:id="modelo" />
-                        <TableColumn text="Estado" fx:id="estado" />
-                        <TableColumn text="RAM" fx:id="ram" />
-                        <TableColumn text="Procesador" fx:id="procesador" />
-                        <TableColumn text="Tamaño de Disco" fx:id="tamDisco" />
-                        <TableColumn text="Tipo de Disco" fx:id="disco" />
+                        <TableColumn fx:id="id" text="ID" />
+                        <TableColumn fx:id="marca" text="Marca" />
+                        <TableColumn fx:id="modelo" text="Modelo" />
+                        <TableColumn fx:id="estado" text="Estado" />
+                        <TableColumn fx:id="ram" text="RAM" />
+                        <TableColumn fx:id="procesador" text="Procesador" />
+                        <TableColumn fx:id="tamDisco" text="Tamaño de Disco" />
+                        <TableColumn fx:id="disco" maxWidth="1.7976931348623157E308" text="Tipo de Disco" />
                     </columns>
                 </TableView>
-                <VBox>
+                <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10" HBox.hgrow="ALWAYS">
                     <children>
-                        <Button text="Añadir ordenador" onAction="#addDevice" />
-                        <Button text="Editar ordenador" />
-                        <Button text="Borrar ordenador" />
+                        <Button onAction="#addDevice" styleClass="action-button" text="Añadir ordenador" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></Button>
+                        <Button onAction="#editDevice" styleClass="action-button" text="Editar ordenador" />
+                        <Button onAction="#deleteDevice" styleClass="action-button" text="Borrar ordenador" />
                     </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
                 </VBox>
             </children>
         </HBox>
     </children>
+    <padding>
+        <Insets bottom="30.0" />
+    </padding>
 </VBox>

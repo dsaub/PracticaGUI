@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import me.elordenador.practica6.Disco;
@@ -43,6 +44,7 @@ public class OrdenadorController implements Initializable {
     private TableColumn<OrdenadoresModel, String> disco;
     private ObservableList<OrdenadoresModel> ordenadoresModels;
 
+    public static int selectedID = -1;
     public OrdenadorController() {
 
 
@@ -75,13 +77,40 @@ public class OrdenadorController implements Initializable {
 
         }
         tableView.setItems(ordenadoresModels);
-    }
 
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                OrdenadoresModel model = (OrdenadoresModel) newSelection;
+                selectedID = model.getId();
+                System.out.println("Selected ID: " + selectedID);
+            }
+        });
+    }
+    
     public void addDevice(ActionEvent actionEvent) throws IOException {
         Stage stage = App.getInstance().getStage();
 
         VBox vbox = FXMLLoader.load(getClass().getClassLoader().getResource("addOrdenador.fxml"));
         Scene scene = new Scene(vbox);
+        stage.setScene(scene);
+    }
+
+    public void editDevice(ActionEvent actionEvent) throws IOException {
+        if (selectedID != -1) {
+            Stage stage = App.getInstance().getStage();
+            VBox vbox = FXMLLoader.load(getClass().getClassLoader().getResource("editOrdenador.fxml"));
+            Scene scene = new Scene(vbox);
+            stage.setScene(scene);
+        }
+    }
+
+    public void deleteDevice(ActionEvent actionEvent) throws IOException {
+        // TODO: Agregar metodologia de deleteDevice
+        Ordenador ordenador = new Ordenador(selectedID);
+        ordenador.delete();
+        VBox vbox = FXMLLoader.load(getClass().getClassLoader().getResource("ordenadores.fxml"));
+        Scene scene = new Scene(vbox);
+        Stage stage = App.getInstance().getStage();
         stage.setScene(scene);
     }
 }

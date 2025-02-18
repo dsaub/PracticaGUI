@@ -2,57 +2,59 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.collections.FXCollections?>
 <VBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="me.elordenador.practicagui.controllers.AddOrdenadorController">
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="me.elordenador.practicagui.controllers.AddOrdenadorController"
+      spacing="15"
+      alignment="TOP_CENTER"
+      stylesheets="@styles2.css">
     <children>
-        <fx:include source="menu.fxml" />
-        <HBox>
+        <Label text="Añadir Ordenador" styleClass="header-label"/>
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
             <children>
-                <Label text="Marca:" />
-                <TextArea fx:id="marca" maxHeight="20" />
+                <Label text="Marca:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="marca" GridPane.rowIndex="0" GridPane.columnIndex="1" promptText="Introduce la marca"/>
+
+                <Label text="Modelo:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="modelo" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="Introduce el modelo"/>
+
+                <Label text="Estado:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <CheckBox fx:id="estado" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Ram:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="ram" GridPane.rowIndex="3" GridPane.columnIndex="1" promptText="Introduce la RAM"/>
+
+                <Label text="Procesador:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="procesador" GridPane.rowIndex="4" GridPane.columnIndex="1" promptText="Introduce el procesador"/>
+
+                <Label text="Tamaño del disco:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField fx:id="tamDisco" GridPane.rowIndex="5" GridPane.columnIndex="1" promptText="Introduce el tamaño del disco"/>
+
+                <Label text="Tipo del disco:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="disco" GridPane.rowIndex="6" GridPane.columnIndex="1">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="HDD" />
+                            <String fx:value="SSD_SATA" />
+                            <String fx:value="SSD_NVME" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
             </children>
-        </HBox>
-        <HBox>
-            <children>
-                <Label text="Modelo" />
-                <TextArea fx:id="modelo" maxHeight="20" />
-            </children>
-        </HBox>
-        <HBox>
-            <children>
-                <Label text="Estado:" />
-                <CheckBox fx:id="estado" />
-            </children>
-        </HBox>
-        <HBox>
-            <children>
-                <Label text="Ram:" />
-                <TextArea fx:id="ram" maxHeight="20" />
-            </children>
-        </HBox>
-        <HBox>
-            <children>
-                <Label text="Procesador:" />
-                <TextArea fx:id="procesador" maxHeight="20" />
-            </children>
-        </HBox>
-        <HBox>
-            <children>
-                <Label text="Tamaño del disco: " />
-                <TextArea fx:id="tamDisco" maxHeight="20" />
-            </children>
-        </HBox>
-        <HBox>
-            <children>
-                <Label text="Tipo del disco: " />
-                <TextArea fx:id="disco" maxHeight="20" />
-            </children>
-        </HBox>
-        <Button text="Guardar" onAction="#save" />
+        </GridPane>
+        <Button text="Guardar" onAction="#save" maxWidth="200" styleClass="save-button"/>
     </children>
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
 </VBox>
