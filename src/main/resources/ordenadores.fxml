@@ -10,13 +10,13 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="15" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.elordenador.practicagui.controllers.OrdenadorController">
     <children>
-        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="header-label" text="Lista de Ordenadores">
+        <Label fx:id="texto" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="header-label" text="Lista de Ordenadores">
          <padding>
             <Insets bottom="10.0" top="30.0" />
          </padding></Label>
         <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10" VBox.vgrow="ALWAYS">
             <children>
-                <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"  prefHeight="400.0" prefWidth="806.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="806.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="id" text="ID" />
                         <TableColumn fx:id="marca" text="Marca" />
@@ -36,6 +36,7 @@
                      </VBox.margin></Button>
                         <Button onAction="#editDevice" styleClass="action-button" text="Editar ordenador" />
                         <Button onAction="#deleteDevice" styleClass="action-button" text="Borrar ordenador" />
+                  <Button mnemonicParsing="false" onAction="#easteregg" opacity="0.0" />
                     </children>
                <padding>
                   <Insets right="10.0" />
