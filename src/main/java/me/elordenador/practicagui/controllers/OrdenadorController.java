@@ -1,5 +1,6 @@
 package me.elordenador.practicagui.controllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,8 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import me.elordenador.practica6.Disco;
 import me.elordenador.practica6.Ordenador;
@@ -25,7 +28,8 @@ import java.util.ResourceBundle;
 public class OrdenadorController implements Initializable {
     @FXML
     private TableView tableView;
-
+    @FXML
+    private Label texto;
     @FXML
     private TableColumn<OrdenadoresModel, Integer> id;
     @FXML
@@ -112,5 +116,23 @@ public class OrdenadorController implements Initializable {
         Scene scene = new Scene(vbox);
         Stage stage = App.getInstance().getStage();
         stage.setScene(scene);
+    }
+
+
+    @FXML
+    private void easteregg(ActionEvent actionEvent) throws InterruptedException {
+        new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                texto.getTransforms().add(new Rotate(i,i,i));
+                Platform.runLater(() -> texto.setText("dude/"));
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }).start();
+
+
     }
 }
