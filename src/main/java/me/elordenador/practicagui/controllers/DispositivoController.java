@@ -20,6 +20,7 @@ import me.elordenador.practicagui.models.OrdenadoresModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class DispositivoController implements Initializable {
 
@@ -75,7 +76,7 @@ public class DispositivoController implements Initializable {
 
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                OrdenadoresModel model = (OrdenadoresModel) newSelection;
+                DispositivoModel model = (DispositivoModel) newSelection;
                 selectedID = model.getId();
                 System.out.println("Selected ID: " + selectedID);
             }
