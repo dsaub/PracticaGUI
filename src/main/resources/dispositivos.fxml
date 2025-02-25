@@ -5,6 +5,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -19,6 +22,20 @@
             <Insets bottom="20.0" top="10.0" />
          </padding>
       </Label>
+      <HBox>
+         <children>
+            <TextField fx:id="searchBar" maxHeight="1.7976931348623157E308" onAction="#search" promptText="Buscar..." HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#search" text="Buscar">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icon/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
             <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
@@ -39,7 +56,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button onAction="#editDevice" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: RGB(54, 54, 255);" text="EDITAR" textAlignment="CENTER" textFill="WHITE">
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editDevice" style="-fx-background-color: RGB(54, 54, 255);" text="EDITAR" textAlignment="CENTER" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -47,7 +64,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button onAction="#deleteDevice" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: RGB(54, 54, 255);" text="BORRAR" textAlignment="CENTER" textFill="WHITE">
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteDevice" style="-fx-background-color: RGB(54, 54, 255);" text="BORRAR" textAlignment="CENTER" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
