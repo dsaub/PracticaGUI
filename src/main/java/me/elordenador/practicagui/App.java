@@ -25,20 +25,11 @@ public class App extends Application {
         Ordenador.init();
         Impresora.init();
         Dispositivo.init();
-        dispositivos = new ArrayList<>();
+
 
         impresoras = new ArrayList<>();
 
-        for (int i = 0; i < Dispositivo.length(); i++) {
-            Dispositivo dispositivo = new Dispositivo(i);
-            try {
-                dispositivo.load();
-                dispositivos.add(dispositivo);
-            } catch (ElementNotFoundException e) {
-                System.out.println("[WARN] Device not found");
-            }
-
-        }
+        loadDispositivos();
 
         loadOrdenadores();
 
@@ -89,5 +80,19 @@ public class App extends Application {
 
     public static App getInstance() {
         return instance;
+    }
+
+    public void loadDispositivos() {
+        dispositivos = new ArrayList<>();
+        for (int i = 0; i < Dispositivo.length(); i++) {
+            Dispositivo dispositivo = new Dispositivo(i);
+            try {
+                dispositivo.load();
+                dispositivos.add(dispositivo);
+            } catch (ElementNotFoundException e) {
+                System.out.println("[WARN] Device not found");
+            }
+
+        }
     }
 }

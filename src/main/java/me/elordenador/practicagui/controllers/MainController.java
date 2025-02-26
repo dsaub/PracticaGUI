@@ -12,8 +12,14 @@ import java.io.IOException;
 public class MainController {
 
     @FXML
-    public void openDispositivos() {
-        System.out.println("[DEBUG] Dispositivos clicked.");
+    public void openDispositivos() throws IOException {
+        App app = App.getInstance();
+        Stage stage = app.getStage();
+
+        VBox vbox = FXMLLoader.load(getClass().getClassLoader().getResource("dispositivos.fxml"));
+        Scene scene = new Scene(vbox);
+        stage.setTitle("Listado de dispositivos");
+        stage.setScene(scene);
     }
 
     @FXML
