@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import me.elordenador.practica6.Dispositivo;
+import me.elordenador.practica6.ElementNotFoundException;
 import me.elordenador.practicagui.App;
 import me.elordenador.practicagui.models.DispositivoModel;
 import me.elordenador.practicagui.models.OrdenadoresModel;
@@ -52,13 +53,19 @@ public class DispositivoController implements Initializable {
     }
 
     @FXML
-    private void deleteDevice(ActionEvent actionEvent) {
+    private void deleteDevice(ActionEvent actionEvent) throws IOException, ElementNotFoundException {
+        Dispositivo dispositivo = new Dispositivo(selectedID);
+        dispositivo.load();
+        dispositivo.delete();
+        Stage stage = App.getInstance().getStage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("dispositivos.fxml"))));
 
     }
 
     @FXML
-    private void editDevice(ActionEvent actionEvent) {
-
+    private void editDevice(ActionEvent actionEvent) throws IOException {
+        Stage stage = App.getInstance().getStage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("editDispositivo.fxml"))));
     }
     @FXML
     private ObservableList<DispositivoModel> dispositivosModels;
