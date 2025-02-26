@@ -67,23 +67,8 @@ public class OrdenadorController implements Initializable {
         procesador.setCellValueFactory(new PropertyValueFactory<>("procesador"));
         tamDisco.setCellValueFactory(new PropertyValueFactory<>("tamDisco"));
         disco.setCellValueFactory(new PropertyValueFactory<>("disco"));
-        ordenadoresModels = FXCollections.observableArrayList();
-        System.out.println("Opened controller");
-        App.getInstance().loadOrdenadores();
-        for (Ordenador ordenador : App.ordenadores) {
-            ordenadoresModels.add(new OrdenadoresModel(
-                    ordenador.getId(),
-                    ordenador.getMarca(),
-                    ordenador.getModelo(),
-                    ordenador.getEstado(),
-                    ordenador.getRam(),
-                    ordenador.getProcesador(),
-                    ordenador.getTamDisco(),
-                    ordenador.getTipoDisco()
-            ));
 
-        }
-        tableView.setItems(ordenadoresModels);
+        reload();
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -141,5 +126,24 @@ public class OrdenadorController implements Initializable {
 
     @FXML
     private void search(ActionEvent actionEvent) {
+    }
+
+    private void reload() {
+        ordenadoresModels = FXCollections.observableArrayList();
+        App.getInstance().loadOrdenadores();
+        for (Ordenador ordenador : App.ordenadores) {
+            ordenadoresModels.add(new OrdenadoresModel(
+                    ordenador.getId(),
+                    ordenador.getMarca(),
+                    ordenador.getModelo(),
+                    ordenador.getEstado(),
+                    ordenador.getRam(),
+                    ordenador.getProcesador(),
+                    ordenador.getTamDisco(),
+                    ordenador.getTipoDisco()
+            ));
+
+        }
+        tableView.setItems(ordenadoresModels);
     }
 }
