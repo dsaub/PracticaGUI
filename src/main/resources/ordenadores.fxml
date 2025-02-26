@@ -5,6 +5,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -12,8 +15,22 @@
     <children>
         <Label fx:id="texto" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="header-label" text="Lista de Ordenadores">
          <padding>
-            <Insets bottom="10.0" top="30.0" />
+            <Insets top="30.0" />
          </padding></Label>
+      <HBox>
+         <children>
+            <TextField fx:id="searchBox" onAction="#search" HBox.hgrow="ALWAYS" />
+            <Button alignment="CENTER" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#search" text="Buscar">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icon/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
         <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10" VBox.vgrow="ALWAYS">
             <children>
                 <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="806.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
@@ -45,7 +62,4 @@
             </children>
         </HBox>
     </children>
-    <padding>
-        <Insets bottom="30.0" />
-    </padding>
 </VBox>

@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -48,6 +49,8 @@ public class OrdenadorController implements Initializable {
     private TableColumn<OrdenadoresModel, String> disco;
     private ObservableList<OrdenadoresModel> ordenadoresModels;
 
+    @FXML
+    private TextField searchBar;
     public static int selectedID = -1;
     public OrdenadorController() {
 
@@ -134,5 +137,9 @@ public class OrdenadorController implements Initializable {
         }).start();
 
 
+    }
+
+    @FXML
+    private void search(ActionEvent actionEvent) {
     }
 }
