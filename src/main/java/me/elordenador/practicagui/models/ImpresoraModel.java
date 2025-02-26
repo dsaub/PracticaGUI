@@ -3,6 +3,7 @@ package me.elordenador.practicagui.models;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableArray;
 
 public class ImpresoraModel {
     private SimpleIntegerProperty id;

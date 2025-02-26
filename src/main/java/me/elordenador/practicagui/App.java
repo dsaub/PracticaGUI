@@ -27,21 +27,13 @@ public class App extends Application {
         Dispositivo.init();
 
 
-        impresoras = new ArrayList<>();
+        loadImpresoras();
 
         loadDispositivos();
 
         loadOrdenadores();
 
-        for (int i = 0; i < Impresora.length(); i++) {
-            Impresora impresora = new Impresora(i);
-            try {
-                impresora.load();
-                impresoras.add(impresora);
-            } catch (ElementNotFoundException e) {
-                System.err.println("[WARN] Device not found");
-            }
-        }
+
 
 
 
@@ -93,6 +85,19 @@ public class App extends Application {
                 System.out.println("[WARN] Device not found");
             }
 
+        }
+    }
+
+    public void loadImpresoras() {
+        impresoras = new ArrayList<>();
+        for (int i = 0; i < Impresora.length(); i++) {
+            Impresora impresora = new Impresora(i);
+            try {
+                impresora.load();
+                impresoras.add(impresora);
+            } catch (ElementNotFoundException e) {
+                System.err.println("[WARN] Device not found");
+            }
         }
     }
 }

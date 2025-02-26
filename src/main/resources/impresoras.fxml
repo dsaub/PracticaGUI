@@ -44,9 +44,9 @@
                   <TableColumn fx:id="marca" prefWidth="75.0" text="Marca" />
                   <TableColumn fx:id="modelo" prefWidth="75.0" text="Modelo" />
                   <TableColumn fx:id="estado" prefWidth="75.0" text="Estado" />
-                  <TableColumn prefWidth="75.0" text="Tipo" />
-                  <TableColumn prefWidth="75.0" text="Color" />
-                  <TableColumn prefWidth="75.0" text="Scanner" />
+                  <TableColumn fx:id="tipo" prefWidth="75.0" text="Tipo" />
+                  <TableColumn fx:id="color" prefWidth="75.0" text="Color" />
+                  <TableColumn fx:id="scanner" prefWidth="75.0" text="Scanner" />
                </columns>
             </TableView>
             <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="322.0" prefWidth="80.0" HBox.hgrow="ALWAYS">
