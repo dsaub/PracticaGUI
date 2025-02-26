@@ -13,17 +13,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
-import me.elordenador.practica6.Disco;
 import me.elordenador.practica6.Ordenador;
 import me.elordenador.practicagui.App;
 import me.elordenador.practicagui.models.OrdenadoresModel;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class OrdenadorController implements Initializable {
@@ -50,8 +49,10 @@ public class OrdenadorController implements Initializable {
     private ObservableList<OrdenadoresModel> ordenadoresModels;
 
     @FXML
-    private TextField searchBar;
+    private TextField searchBox;
     public static int selectedID = -1;
+
+    private ArrayList<Ordenador> dispositivoArrayList;
     public OrdenadorController() {
 
 
@@ -68,6 +69,7 @@ public class OrdenadorController implements Initializable {
         tamDisco.setCellValueFactory(new PropertyValueFactory<>("tamDisco"));
         disco.setCellValueFactory(new PropertyValueFactory<>("disco"));
 
+        search();
         reload();
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -125,13 +127,33 @@ public class OrdenadorController implements Initializable {
     }
 
     @FXML
-    private void search(ActionEvent actionEvent) {
+    private void search() {
+        App.getInstance().loadOrdenadores();
+        dispositivoArrayList = new ArrayList<>();
+        String searchQuery = searchBox.getText();
+
+        for (Ordenador ordenador : App.ordenadores) {
+            System.out.println(ordenador.toString());
+            if (
+                    ordenador.getMarca().contains(searchQuery) ||
+                            String.valueOf(ordenador.getId()).contains(searchQuery) ||
+                            ordenador.getModelo().contains(searchQuery) ||
+                            String.valueOf(ordenador.getRam()).contains(searchQuery) ||
+                            ordenador.getProcesador().contains(searchQuery) ||
+                            String.valueOf(ordenador.getTamDisco()).contains(searchQuery) ||
+                            ordenador.getTipoDisco().name().contains(searchQuery)
+            ) {
+                dispositivoArrayList.add(ordenador);
+            }
+
+            reload();
+        }
     }
 
     private void reload() {
         ordenadoresModels = FXCollections.observableArrayList();
         App.getInstance().loadOrdenadores();
-        for (Ordenador ordenador : App.ordenadores) {
+        for (Ordenador ordenador : dispositivoArrayList) {
             ordenadoresModels.add(new OrdenadoresModel(
                     ordenador.getId(),
                     ordenador.getMarca(),
