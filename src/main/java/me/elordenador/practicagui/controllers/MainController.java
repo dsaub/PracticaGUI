@@ -34,7 +34,8 @@ public class MainController {
     }
 
     @FXML
-    public void openImpresoras() {
-        System.out.println("[DEBUG] Impresoras clicked.");
+    public void openImpresoras() throws IOException {
+        App.getInstance().getStage().setTitle("Listado de Impresoras");
+        App.getInstance().getStage().setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("impresoras.fxml"))));
     }
 }
