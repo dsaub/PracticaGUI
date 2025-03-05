@@ -4,7 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -14,7 +16,9 @@ import me.elordenador.practicagui.App;
 import me.elordenador.practicagui.models.DispositivoModel;
 import me.elordenador.practicagui.models.ImpresoraModel;
 import me.elordenador.practica6.Impresora;
+import me.elordenador.practicagui.models.OrdenadoresModel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -39,6 +43,8 @@ public class ImpresoraController implements Initializable {
 
     private ObservableList<ImpresoraModel> impresoraModelObservableArray;
 
+    public static int selectedID = -1;
+
     public void search() {
         String searchQuery = searchBar.getText();
         App.getInstance().loadImpresoras();
@@ -46,15 +52,22 @@ public class ImpresoraController implements Initializable {
         for (Impresora impresora : App.impresoras) {
             if (String.valueOf(impresora.getId()).contains(searchQuery) ||
             impresora.getMarca().contains(searchQuery) ||
-            impresora.getModelo().contains(searchQuery)
+            impresora.getModelo().contains(searchQuery)||
             impresora.getTipo().name().contains(searchQuery)) {
                 impresoraArrayList.add(impresora);
             }
         }
 
+        reload();
+
     }
 
     public void addDevice(ActionEvent actionEvent) {
+        try {
+            App.getInstance().getStage().setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("addImpresora.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void editDevice(ActionEvent actionEvent) {
@@ -73,6 +86,15 @@ public class ImpresoraController implements Initializable {
         color.setCellValueFactory(new PropertyValueFactory<>("color"));
         scanner.setCellValueFactory(new PropertyValueFactory<>("scanner"));;
         search();
+        reload();
+
+        table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                ImpresoraModel model = (ImpresoraModel) newSelection;
+                selectedID = model.getId();
+                System.out.println("Selected ID: " + selectedID);
+            }
+        });
     }
 
     private void reload() {
