@@ -111,15 +111,15 @@ public class DispositivoController implements Initializable {
     private void search() {
         // Esta funcion se ejecutará cada vez que se modifique el texto en la barra de busqueda
 
-            dispositivoArrayList = new ArrayList<>();
-            String searchQuery = searchBar.getText();
-            for (Dispositivo dispositivo: App.dispositivos) {
-                if (String.valueOf(dispositivo.getId()).contains(searchQuery) ||
-                        dispositivo.getMarca().contains(searchQuery) ||
-                        dispositivo.getModelo().contains(searchQuery)) {
-                    dispositivoArrayList.add(dispositivo);
+                dispositivoArrayList = new ArrayList<>();
+                String searchQuery = searchBar.getText();
+                for (Dispositivo dispositivo: App.dispositivos) {
+                    if (String.valueOf(dispositivo.getId()).contains(searchQuery) ||
+                            dispositivo.getMarca().contains(searchQuery) ||
+                            dispositivo.getModelo().contains(searchQuery)) {
+                        dispositivoArrayList.add(dispositivo);
+                    }
                 }
-            }
 
             reloadData();
 

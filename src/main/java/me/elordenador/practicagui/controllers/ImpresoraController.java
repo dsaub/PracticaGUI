@@ -46,7 +46,7 @@ public class ImpresoraController implements Initializable {
         for (Impresora impresora : App.impresoras) {
             if (String.valueOf(impresora.getId()).contains(searchQuery) ||
             impresora.getMarca().contains(searchQuery) ||
-            impresora.getModelo().contains(searchQuery)
+            impresora.getModelo().contains(searchQuery) ||
             impresora.getTipo().name().contains(searchQuery)) {
                 impresoraArrayList.add(impresora);
             }
