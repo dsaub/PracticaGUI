@@ -33,7 +33,7 @@ public class EditImpresoraController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        selectedID = DispositivoController.selectedID;
+        selectedID = ImpresoraController.selectedID;
 
         dispositivo = new Impresora(selectedID);
         try {
