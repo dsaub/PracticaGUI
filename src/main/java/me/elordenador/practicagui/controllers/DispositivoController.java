@@ -7,15 +7,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 import me.elordenador.practica6.Dispositivo;
 import me.elordenador.practica6.ElementNotFoundException;
 import me.elordenador.practicagui.App;
+import me.elordenador.practicagui.ErrorMSG;
 import me.elordenador.practicagui.models.DispositivoModel;
 import me.elordenador.practicagui.models.OrdenadoresModel;
 
@@ -54,18 +57,37 @@ public class DispositivoController implements Initializable {
 
     @FXML
     private void deleteDevice(ActionEvent actionEvent) throws IOException, ElementNotFoundException {
-        Dispositivo dispositivo = new Dispositivo(selectedID);
-        dispositivo.load();
-        dispositivo.delete();
-        Stage stage = App.getInstance().getStage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("dispositivos.fxml"))));
+        if (selectedID < 0) {
+            new ErrorMSG("Primero selecciona un dispositivo").show();
+        } else {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Desea eliminar ese dispositivo?", ButtonType.NO, ButtonType.YES);
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                Dispositivo dispositivo = new Dispositivo(selectedID);
+                dispositivo.load();
+                dispositivo.delete();
+                Stage stage = App.getInstance().getStage();
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("dispositivos.fxml"))));
+            }
+
+
+        }
+
+
 
     }
 
     @FXML
     private void editDevice(ActionEvent actionEvent) throws IOException {
-        Stage stage = App.getInstance().getStage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("editDispositivo.fxml"))));
+        if (selectedID < 0) {
+            new ErrorMSG("Primero selecciona un dispositivo").show();
+        } else {
+            Stage stage = App.getInstance().getStage();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("editDispositivo.fxml"))));
+        }
+
     }
     @FXML
     private ObservableList<DispositivoModel> dispositivosModels;

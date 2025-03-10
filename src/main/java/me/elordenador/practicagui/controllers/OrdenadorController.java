@@ -8,16 +8,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import me.elordenador.practica6.Ordenador;
 import me.elordenador.practicagui.App;
+import me.elordenador.practicagui.ErrorMSG;
 import me.elordenador.practicagui.models.OrdenadoresModel;
 
 import java.io.IOException;
@@ -95,17 +93,28 @@ public class OrdenadorController implements Initializable {
             VBox vbox = FXMLLoader.load(getClass().getClassLoader().getResource("editOrdenador.fxml"));
             Scene scene = new Scene(vbox);
             stage.setScene(scene);
+        } else {
+            new ErrorMSG("Primero debes de seleccionar un dispositivo").show();
         }
     }
 
     public void deleteDevice(ActionEvent actionEvent) throws IOException {
-        // TODO: Agregar metodologia de deleteDevice
-        Ordenador ordenador = new Ordenador(selectedID);
-        ordenador.delete();
-        VBox vbox = FXMLLoader.load(getClass().getClassLoader().getResource("ordenadores.fxml"));
-        Scene scene = new Scene(vbox);
-        Stage stage = App.getInstance().getStage();
-        stage.setScene(scene);
+        if (selectedID < 0) {
+            new ErrorMSG("Primero debes de seleccionar un dispositivo").show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Deseas borrar el dispositivo?", ButtonType.NO, ButtonType.YES);
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                Ordenador ordenador = new Ordenador(selectedID);
+                ordenador.delete();
+                VBox vbox = FXMLLoader.load(getClass().getClassLoader().getResource("ordenadores.fxml"));
+                Scene scene = new Scene(vbox);
+                Stage stage = App.getInstance().getStage();
+                stage.setScene(scene);
+            }
+        }
+
     }
 
 

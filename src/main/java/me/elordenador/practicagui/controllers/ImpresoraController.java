@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import me.elordenador.practica6.Dispositivo;
 import me.elordenador.practica6.ElementNotFoundException;
 import me.elordenador.practicagui.App;
+import me.elordenador.practicagui.ErrorMSG;
 import me.elordenador.practicagui.models.DispositivoModel;
 import me.elordenador.practicagui.models.ImpresoraModel;
 import me.elordenador.practica6.Impresora;
@@ -72,15 +73,25 @@ public class ImpresoraController implements Initializable {
     }
 
     public void editDevice(ActionEvent actionEvent) throws IOException {
-        App.getInstance().getStage().setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("editImpresora.fxml"))));
+        if (selectedID < 0) {
+            new ErrorMSG("Debe de seleccionar un dispositivo primero").show();
+        } else {
+            App.getInstance().getStage().setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("editImpresora.fxml"))));
+        }
+
     }
 
     public void deleteDevice(ActionEvent actionEvent) throws IOException, ElementNotFoundException {
-        System.out.println("Delete Device");
-        Impresora impresora = new Impresora(selectedID);
-        impresora.load();
-        impresora.delete();
-        search();
+        if (selectedID < 0) {
+            new ErrorMSG("Debe de seleccionar un dispositivo primero").show();
+        }
+        else {
+            System.out.println("Delete Device");
+            Impresora impresora = new Impresora(selectedID);
+            impresora.load();
+            impresora.delete();
+            search();
+        }
     }
 
     @Override
